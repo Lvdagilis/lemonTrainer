@@ -5,7 +5,7 @@
 }
 
 /* Stats Grid - 2x2 layout */
-.stats-grid {
+.ride-page .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;

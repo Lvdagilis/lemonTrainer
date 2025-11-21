@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# lemonTrainer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based cycling trainer app for Wahoo Kickr Core and other Bluetooth smart trainers. Control ERG mode, follow structured workouts, and track your rides.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Bluetooth Smart Trainer Control** - Connect to Wahoo Kickr Core and compatible trainers via Web Bluetooth
+- **Heart Rate Monitor Support** - Connect Bluetooth HR monitors for heart rate tracking
+- **ERG Mode** - Set and control target power output
+- **Structured Workouts** - Create and follow interval workouts with:
+  - Steady-state segments
+  - Ramp segments (progressive power changes)
+  - Interval segments (on/off repetitions)
+- **Live Metrics** - Real-time display of power, cadence, speed, and heart rate
+- **Live Charts** - Visual graphs of power and cadence during rides
+- **Workout Recording** - Automatic recording with summary statistics
+- **FIT File Export** - Export rides in standard FIT format for upload to Strava, Garmin Connect, etc.
+- **Audio Cues** - Countdown beeps and segment change alerts
 
-## React Compiler
+## Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Modern browser with Web Bluetooth support (Chrome, Edge, or Opera)
+- Bluetooth smart trainer (Wahoo Kickr Core, etc.)
+- Optional: Bluetooth heart rate monitor
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Install dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Start development server
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Open the app in a supported browser
+2. Click "Connect Trainer" to pair your smart trainer
+3. Optionally connect a heart rate monitor
+4. Choose "Free Ride" for manual ERG control, or select/create a structured workout
+5. Start your ride and follow the on-screen targets
+6. After your ride, view the summary and export your workout
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech Stack
+
+- React 18 + TypeScript
+- Vite
+- Web Bluetooth API
+- FIT SDK for workout export
+
+## License
+
+MIT
