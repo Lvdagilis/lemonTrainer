@@ -1,0 +1,188 @@
+.summary-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.summary-page h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.summary-page h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+/* Charts */
+.chart-section {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.legend-item::before {
+  content: '';
+  width: 12px;
+  height: 3px;
+  border-radius: 1px;
+}
+
+.legend-power::before {
+  background: var(--accent);
+}
+
+.legend-cadence::before {
+  background: var(--success);
+}
+
+.legend-hr::before {
+  background: var(--danger);
+}
+
+.chart-container {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart {
+  flex: 1;
+  height: 80px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+}
+
+.chart-combined {
+  height: 120px;
+}
+
+.chart-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  min-width: 35px;
+  text-align: right;
+}
+
+.chart-labels-multi {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  min-width: 40px;
+}
+
+.chart-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: right;
+}
+
+.label-power {
+  color: var(--accent);
+}
+
+.label-cadence {
+  color: var(--success);
+}
+
+.label-hr {
+  color: var(--danger);
+}
+
+/* Export */
+.export-section {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.export-section h2 {
+  margin-bottom: 0.75rem;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.export-buttons .btn {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

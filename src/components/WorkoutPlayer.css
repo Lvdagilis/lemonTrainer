@@ -1,0 +1,337 @@
+.workout-player {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Mute button */
+.btn-mute {
+  background: transparent;
+  border: 1px solid var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-mute:hover {
+  background: var(--bg-tertiary);
+}
+
+.btn-mute.muted {
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+/* Progress */
+.player-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-bar {
+  position: relative;
+  height: 8px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.progress-segments {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.progress-segment {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-right: 1px solid var(--bg-secondary);
+  opacity: 0.3;
+}
+
+.progress-segment.active {
+  opacity: 0;
+}
+
+.progress-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Segment Card */
+.segment-card {
+  background: var(--bg-primary);
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.segment-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.segment-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.segment-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.segment-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.segment-times {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.segment-time {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.phase-time {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.segment-time-small {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.interval-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.phase-on {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.phase-off {
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* Skip Buttons */
+.skip-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Targets Row */
+.targets-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.target-item {
+  flex: 1;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.target-item .target-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.target-item .target-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.target-diff {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.target-diff.on-target {
+  color: var(--success);
+  background: rgba(76, 175, 80, 0.15);
+}
+
+.target-diff.high {
+  color: var(--warning);
+  background: rgba(255, 193, 7, 0.15);
+}
+
+.target-diff.low {
+  color: var(--danger);
+  background: rgba(244, 67, 54, 0.15);
+}
+
+/* Upcoming Section */
+.upcoming-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upcoming-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.upcoming-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--bg-primary);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+
+.upcoming-card.upcoming-complete {
+  border-left-color: var(--success);
+}
+
+.upcoming-name {
+  font-weight: 500;
+  flex: 1;
+}
+
+.upcoming-duration {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.upcoming-power {
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Stop button styling */
+.btn-stop {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-stop:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Countdown Overlay */
+.countdown-overlay {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.countdown-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--warning);
+  opacity: 0.8;
+  text-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+  animation: pulse 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Paused Overlay */
+.paused-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px; /* Leave space for buttons at bottom */
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.paused-overlay span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--warning);
+  letter-spacing: 0.1em;
+}
