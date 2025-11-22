@@ -1,11 +1,15 @@
 {
   "name": "lemontrainer",
-  "private": false,
+  "private": true,
   "version": "1.0.0",
   "description": "Web-based cycling trainer app for Wahoo Kickr and Bluetooth smart trainers",
   "keywords": ["cycling", "trainer", "wahoo", "bluetooth", "smart-trainer", "erg-mode"],
-  "author": "",
+  "author": "Lukas Vytautas Dagilis <lukasdagilis@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lvdagilis/lemonTrainer.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

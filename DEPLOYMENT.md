@@ -146,6 +146,7 @@ This guide shows you how to deploy lemonTrainer as a publicly accessible website
    - **Important build settings**:
      - Framework preset: **None** (or Vite)
      - Build command: `npm run build`
+     - Deploy command: `npx wrangler pages deploy dist`
      - Build output directory: `dist`
      - Root directory: `/` (leave as default, do NOT change to dist)
    - Click "Save and Deploy"

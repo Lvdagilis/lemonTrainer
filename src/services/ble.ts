@@ -81,7 +81,10 @@ class BLEService {
       });
 
       // Connect to GATT server
-      this.server = await this.device.gatt!.connect();
+      if (!this.device.gatt) {
+        throw new Error('Device does not support GATT');
+      }
+      this.server = await this.device.gatt.connect();
 
       // Get FTMS service
       this.ftmsService = await this.server.getPrimaryService(FTMS_SERVICE_UUID);
@@ -120,14 +123,13 @@ class BLEService {
       this.hasControl = true;
       return true;
     } catch (error) {
-      console.error('Failed to request control:', error);
+      // Silently handle error - control request failed
       return false;
     }
   }
 
   async setTargetPower(watts: number): Promise<boolean> {
     if (!this.controlPoint || !this.hasControl) {
-      console.error('No control point or control not acquired');
       return false;
     }
 
@@ -142,7 +144,7 @@ class BLEService {
       await this.controlPoint.writeValue(buffer);
       return true;
     } catch (error) {
-      console.error('Failed to set target power:', error);
+      // Silently handle error - power setting failed
       return false;
     }
   }
@@ -304,7 +306,10 @@ class HRMonitorService {
       });
 
       // Connect to GATT server
-      this.server = await this.device.gatt!.connect();
+      if (!this.device.gatt) {
+        throw new Error('Device does not support GATT');
+      }
+      this.server = await this.device.gatt.connect();
 
       // Get Heart Rate service
       const hrService = await this.server.getPrimaryService(HEART_RATE_SERVICE_UUID);

@@ -40,7 +40,7 @@ class AudioService {
       oscillator.start(ctx.currentTime);
       oscillator.stop(ctx.currentTime + duration);
     } catch (e) {
-      console.warn('Audio playback failed:', e);
+      // Silently handle audio failure - not critical for app functionality
     }
   }
 
