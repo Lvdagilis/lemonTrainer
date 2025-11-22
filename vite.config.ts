@@ -5,8 +5,9 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Use base path for GitHub Pages if REPO_NAME is set
-  base: process.env.REPO_NAME ? `/${process.env.REPO_NAME}/` : '/',
+  // Use base path for GitHub Pages - set to /lemonTrainer/ for GitHub Pages
+  // For other deployments (Vercel, Netlify, local), use root /
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/lemonTrainer/' : '/',
   plugins: [
     react(),
     basicSsl(),
