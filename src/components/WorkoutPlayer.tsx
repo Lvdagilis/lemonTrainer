@@ -29,7 +29,7 @@ export function WorkoutPlayer({
 
   const lastPowerRef = useRef<number>(0);
   const lastPositionRef = useRef<{ segmentIndex: number; isOnPhase?: boolean }>({ segmentIndex: 0 });
-  const stopConfirmTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const stopConfirmTimeoutRef = useRef<number | null>(null);
 
   const totalDuration = getWorkoutDuration(workout);
   const position = getWorkoutPosition(workout, elapsedTime);
