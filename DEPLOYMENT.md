@@ -143,15 +143,17 @@ This guide shows you how to deploy lemonTrainer as a publicly accessible website
    - Click "Create a project"
    - Connect your GitHub account
    - Select your repository
-   - Build settings:
+   - **Important build settings**:
+     - Framework preset: **None** (or Vite)
      - Build command: `npm run build`
      - Build output directory: `dist`
+     - Root directory: `/` (leave as default, do NOT change to dist)
    - Click "Save and Deploy"
 
 3. **Access your app**
    - URL: `https://lemontrainer.pages.dev`
 
-**Configuration file**: [wrangler.toml](wrangler.toml) (already created)
+**Note**: Cloudflare Pages doesn't need a configuration file - just use the build settings above
 
 ---
 
