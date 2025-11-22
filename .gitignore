@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# SSL certificates
+certs/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

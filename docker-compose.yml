@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  lemontrainer:
+    build: .
+    container_name: lemontrainer
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      # Optional: Mount custom SSL certificates
+      # - ./certs:/app/certs:ro
+    networks:
+      - lemontrainer-network
+
+networks:
+  lemontrainer-network:
+    driver: bridge

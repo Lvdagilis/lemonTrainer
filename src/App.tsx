@@ -5,6 +5,7 @@ import type { Workout } from './types/workout';
 import { HomePage } from './pages/HomePage';
 import { RidePage } from './pages/RidePage';
 import { SummaryPage } from './pages/SummaryPage';
+import { BrowserCheck } from './components/BrowserCheck';
 import './App.css';
 
 type Page = 'home' | 'ride' | 'summary';
@@ -62,18 +63,20 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <header className="header">
-        <h1 onClick={() => page !== 'ride' && setPage('home')} style={{ cursor: page !== 'ride' ? 'pointer' : 'default' }}>
-          lemonTrainer
-        </h1>
-        {page === 'ride' && (
-          <div className="connection-status">
-            <span className={`status-dot ${status}`}></span>
-            <span>Connected</span>
-          </div>
-        )}
-      </header>
+    <>
+      <BrowserCheck />
+      <div className="app">
+        <header className="header">
+          <h1 onClick={() => page !== 'ride' && setPage('home')} style={{ cursor: page !== 'ride' ? 'pointer' : 'default' }}>
+            lemonTrainer
+          </h1>
+          {page === 'ride' && (
+            <div className="connection-status">
+              <span className={`status-dot ${status}`}></span>
+              <span>Connected</span>
+            </div>
+          )}
+        </header>
 
       <main className="main">
         {page === 'home' && (
@@ -115,7 +118,8 @@ function App() {
       <footer className="footer">
         <p>Web Bluetooth API required - Use Chrome, Edge, or Opera</p>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
 
