@@ -27,6 +27,12 @@ export type ConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'er
 export type DataCallback = (data: TrainerData) => void;
 export type StatusCallback = (status: ConnectionStatus, message?: string) => void;
 
+/**
+ * BLEService - Manages Bluetooth Low Energy connections to smart trainers
+ *
+ * Supports FTMS (Fitness Machine Service) protocol for controlling smart trainers
+ * like Wahoo Kickr. Handles connection, data streaming, and power control.
+ */
 class BLEService {
   private device: BluetoothDevice | null = null;
   private server: BluetoothRemoteGATTServer | null = null;
@@ -39,11 +45,21 @@ class BLEService {
 
   private hasControl = false;
 
+  /**
+   * Register a callback to receive trainer data updates
+   * @param callback - Function called with new trainer data (power, cadence, speed)
+   * @returns Cleanup function to remove the callback
+   */
   onData(callback: DataCallback): () => void {
     this.dataCallbacks.add(callback);
     return () => this.dataCallbacks.delete(callback);
   }
 
+  /**
+   * Register a callback to receive connection status updates
+   * @param callback - Function called when connection status changes
+   * @returns Cleanup function to remove the callback
+   */
   onStatus(callback: StatusCallback): () => void {
     this.statusCallbacks.add(callback);
     return () => this.statusCallbacks.delete(callback);
@@ -57,6 +73,14 @@ class BLEService {
     this.statusCallbacks.forEach(cb => cb(status, message));
   }
 
+  /**
+   * Connect to a Bluetooth smart trainer
+   *
+   * Opens the browser's Bluetooth device picker and connects to the selected
+   * FTMS-compatible trainer. Automatically requests control and starts data streaming.
+   *
+   * @returns Promise<boolean> - true if connection successful, false otherwise
+   */
   async connect(): Promise<boolean> {
     try {
       this.notifyStatus('connecting');
@@ -128,6 +152,15 @@ class BLEService {
     }
   }
 
+  /**
+   * Set the target power for ERG mode
+   *
+   * Controls the trainer's resistance to maintain the specified power output.
+   * Requires an active connection and trainer control.
+   *
+   * @param watts - Target power in watts (typically 0-1000W for most trainers)
+   * @returns Promise<boolean> - true if command sent successfully, false otherwise
+   */
   async setTargetPower(watts: number): Promise<boolean> {
     if (!this.controlPoint || !this.hasControl) {
       return false;

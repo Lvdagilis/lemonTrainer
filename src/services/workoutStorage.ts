@@ -11,7 +11,11 @@ export function getSavedWorkouts(): Workout[] {
   try {
     const data = localStorage.getItem(WORKOUTS_KEY);
     return data ? JSON.parse(data) : [];
-  } catch {
+  } catch (error) {
+    // LocalStorage parsing failed - return empty array and log in dev
+    if (import.meta.env.DEV) {
+      console.warn('Failed to load saved workouts:', error);
+    }
     return [];
   }
 }
@@ -62,7 +66,11 @@ export function importWorkoutFromFile(): Promise<Workout | null> {
         // Assign new ID to avoid conflicts
         workout.id = Date.now().toString();
         resolve(workout);
-      } catch {
+      } catch (error) {
+        // File parsing failed - log in dev mode
+        if (import.meta.env.DEV) {
+          console.warn('Failed to import workout file:', error);
+        }
         resolve(null);
       }
     };
@@ -74,7 +82,11 @@ export function getFTP(): number {
   try {
     const ftp = localStorage.getItem(FTP_KEY);
     return ftp ? Number(ftp) : 200;
-  } catch {
+  } catch (error) {
+    // LocalStorage read failed - return default FTP
+    if (import.meta.env.DEV) {
+      console.warn('Failed to load FTP:', error);
+    }
     return 200;
   }
 }

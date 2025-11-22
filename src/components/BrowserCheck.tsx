@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './BrowserCheck.css';
 
 interface BrowserSupport {
   bluetooth: boolean;
@@ -38,25 +39,12 @@ export function BrowserCheck() {
   }
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: '#dc2626',
-      color: 'white',
-      padding: '12px 16px',
-      zIndex: 9999,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: '14px',
-    }}>
-      <div>
+    <div className="browser-check-banner">
+      <div className="browser-check-content">
         {!support.bluetooth && (
           <div>
             <strong>⚠️ Web Bluetooth Not Supported</strong>
-            <p style={{ margin: '4px 0 0 0' }}>
+            <p>
               Your browser doesn't support Web Bluetooth. Please use Chrome, Edge, or Opera.
               {support.browserName && ` (Current: ${support.browserName})`}
             </p>
@@ -65,24 +53,13 @@ export function BrowserCheck() {
         {support.bluetooth && !support.https && (
           <div>
             <strong>⚠️ HTTPS Required</strong>
-            <p style={{ margin: '4px 0 0 0' }}>
+            <p>
               Web Bluetooth requires HTTPS. Please access this app via https:// or localhost.
             </p>
           </div>
         )}
       </div>
-      <button
-        onClick={() => setDismissed(true)}
-        style={{
-          background: 'rgba(255,255,255,0.2)',
-          border: 'none',
-          color: 'white',
-          padding: '6px 12px',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          marginLeft: '16px',
-        }}
-      >
+      <button onClick={() => setDismissed(true)} className="browser-check-dismiss">
         Dismiss
       </button>
     </div>

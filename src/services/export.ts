@@ -1,13 +1,29 @@
 import type { RecordedWorkout } from './recorder';
 import type { TrainerData } from './ble';
 
-// Export workout as JSON
+/**
+ * Export workout data as JSON format
+ *
+ * Creates a human-readable JSON representation of the workout including
+ * all data points and summary statistics.
+ *
+ * @param workout - Recorded workout data
+ * @returns JSON string with formatted workout data
+ */
 export function exportToJSON(workout: RecordedWorkout): string {
   return JSON.stringify(workout, null, 2);
 }
 
-// FIT file encoder for workout data
-// Based on FIT SDK specification
+/**
+ * Export workout data as FIT (Flexible and Interoperable Data Transfer) file
+ *
+ * Converts workout data to the FIT binary format used by Garmin, Strava,
+ * Training Peaks, and other fitness platforms. Includes file header, activity
+ * data, session summary, individual records, and lap information.
+ *
+ * @param workout - Recorded workout data
+ * @returns ArrayBuffer containing binary FIT file data
+ */
 export function exportToFIT(workout: RecordedWorkout): ArrayBuffer {
   const encoder = new FITEncoder();
 
@@ -31,7 +47,16 @@ export function exportToFIT(workout: RecordedWorkout): ArrayBuffer {
   return encoder.finish();
 }
 
-// Download helper
+/**
+ * Trigger file download in the browser
+ *
+ * Creates a blob from the provided data and triggers a download with the
+ * specified filename. Automatically cleans up the temporary object URL.
+ *
+ * @param data - File data as ArrayBuffer or string
+ * @param filename - Name for the downloaded file
+ * @param mimeType - MIME type (e.g., 'application/json', 'application/octet-stream')
+ */
 export function downloadFile(data: ArrayBuffer | string, filename: string, mimeType: string) {
   const blob = new Blob([data], { type: mimeType });
   const url = URL.createObjectURL(blob);
